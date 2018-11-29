@@ -1,0 +1,46 @@
+${AnsiColor.GREEN}
+          kkkkkkkk
+          k::::::k
+          k::::::k
+          k::::::k
+           k:::::k    kkkkkkk eeeeeeeeeeee        eeeeeeeeeeee    ppppp   ppppppppp       eeeeeeeeeeee    rrrrr   rrrrrrrrr
+           k:::::k   k:::::kee::::::::::::ee    ee::::::::::::ee  p::::ppp:::::::::p    ee::::::::::::ee  r::::rrr:::::::::r
+           k:::::k  k:::::ke::::::eeeee:::::ee e::::::eeeee:::::eep:::::::::::::::::p  e::::::eeeee:::::eer:::::::::::::::::r
+           k:::::k k:::::ke::::::e     e:::::ee::::::e     e:::::epp::::::ppppp::::::pe::::::e     e:::::err::::::rrrrr::::::r
+           k::::::k:::::k e:::::::eeeee::::::ee:::::::eeeee::::::e p:::::p     p:::::pe:::::::eeeee::::::e r:::::r     r:::::r
+           k:::::::::::k  e:::::::::::::::::e e:::::::::::::::::e  p:::::p     p:::::pe:::::::::::::::::e  r:::::r     rrrrrrr
+           k:::::::::::k  e::::::eeeeeeeeeee  e::::::eeeeeeeeeee   p:::::p     p:::::pe::::::eeeeeeeeeee   r:::::r
+           k::::::k:::::k e:::::::e           e:::::::e            p:::::p    p::::::pe:::::::e            r:::::r
+          k::::::k k:::::ke::::::::e          e::::::::e           p:::::ppppp:::::::pe::::::::e           r:::::r
+          k::::::k  k:::::ke::::::::eeeeeeee   e::::::::eeeeeeee   p::::::::::::::::p  e::::::::eeeeeeee   r:::::r
+          k::::::k   k:::::kee:::::::::::::e    ee:::::::::::::e   p::::::::::::::pp    ee:::::::::::::e   r:::::r
+          kkkkkkkk    kkkkkkk eeeeeeeeeeeeee      eeeeeeeeeeeeee   p::::::pppppppp        eeeeeeeeeeeeee   rrrrrrr
+                                                                   p:::::p
+                                                                   p:::::p
+${AnsiColor.CYAN}
+   SSSSSSSSSSSSSSS                                            ttttp:::::::p
+ SS:::::::::::::::S                                        ttt:::tp:::::::p
+S:::::SSSSSS::::::S                                        t:::::tp:::::::p
+S:::::S     SSSSSSS                                        t:::::tppppppppp
+S:::::S      yyyyyyy           yyyyyyy  ssssssssss   ttttttt:::::ttttttt        eeeeeeeeeeee       mmmmmmm    mmmmmmm
+S:::::S       y:::::y         y:::::y ss::::::::::s  t:::::::::::::::::t      ee::::::::::::ee   mm:::::::m  m:::::::mm
+ S::::SSSS     y:::::y       y:::::yss:::::::::::::s t:::::::::::::::::t     e::::::eeeee:::::eem::::::::::mm::::::::::m
+  SS::::::SSSSS y:::::y     y:::::y s::::::ssss:::::stttttt:::::::tttttt    e::::::e     e:::::em::::::::::::::::::::::m
+    SSS::::::::SSy:::::y   y:::::y   s:::::s  ssssss       t:::::t          e:::::::eeeee::::::em:::::mmm::::::mmm:::::m
+       SSSSSS::::Sy:::::y y:::::y      s::::::s            t:::::t          e:::::::::::::::::e m::::m   m::::m   m::::m
+            S:::::Sy:::::y:::::y          s::::::s         t:::::t          e::::::eeeeeeeeeee  m::::m   m::::m   m::::m
+            S:::::S y:::::::::y     ssssss   s:::::s       t:::::t    tttttte:::::::e           m::::m   m::::m   m::::m
+SSSSSSS     S:::::S  y:::::::y      s:::::ssss::::::s      t::::::tttt:::::te::::::::e          m::::m   m::::m   m::::m
+S::::::SSSSSS:::::S   y:::::y       s::::::::::::::s       tt::::::::::::::t e::::::::eeeeeeee  m::::m   m::::m   m::::m
+S:::::::::::::::SS   y:::::y         s:::::::::::ss          tt:::::::::::tt  ee:::::::::::::e  m::::m   m::::m   m::::m
+ SSSSSSSSSSSSSSS    y:::::y           sssssssssss              ttttttttttt      eeeeeeeeeeeeee  mmmmmm   mmmmmm   mmmmmm
+                   y:::::y
+                  y:::::y
+                 y:::::y
+                y:::::y
+               yyyyyyy
+
+
+${AnsiColor.BRIGHT_RED}
+Application Version: ${application.formatted-version}
+Spring Boot Version: ${spring-boot.formatted-version}

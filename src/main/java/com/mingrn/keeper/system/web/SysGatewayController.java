@@ -67,15 +67,15 @@ public class SysGatewayController {
 			@ApiImplicitParam(paramType = "query", dataType = "String", required = true, name = "description", value = "说明")
 
 	})
-	public Result putSysGateway(@ParamsIsNotNull String path,
-								@ParamsIsNotNull String appName,
-								@ParamsIsNotNull Integer status,
-								@ParamsIsNotNull String serviceId,
-								@ParamsIsNotNull Boolean retryable,
-								@ParamsIsNotNull String description,
-								@ParamsIsNotNull Boolean stripPrefix,
-								@ParamsIsNotNull Boolean applyEnable,
-								@ParamsIsNotNull Boolean customSensitiveHeaders,
+	public Result putSysGateway(@ParamsIsNotNull @RequestParam String path,
+								@ParamsIsNotNull @RequestParam String appName,
+								@ParamsIsNotNull @RequestParam Integer status,
+								@ParamsIsNotNull @RequestParam String serviceId,
+								@ParamsIsNotNull @RequestParam Boolean retryable,
+								@ParamsIsNotNull @RequestParam String description,
+								@ParamsIsNotNull @RequestParam Boolean stripPrefix,
+								@ParamsIsNotNull @RequestParam Boolean applyEnable,
+								@ParamsIsNotNull @RequestParam Boolean customSensitiveHeaders,
 								@RequestParam(required = false) String url) {
 
 		SysGateway sysGateway = new SysGateway();
@@ -125,16 +125,16 @@ public class SysGatewayController {
 			@ApiImplicitParam(paramType = "query", dataType = "String", required = true, name = "description", value = "说明")
 
 	})
-	public Result updateSysGateway(@ParamsIsNotNull String id,
-								   @ParamsIsNotNull String path,
-								   @ParamsIsNotNull String appName,
-								   @ParamsIsNotNull String serviceId,
-								   @ParamsIsNotNull Boolean retryable,
-								   @ParamsIsNotNull Boolean applyEnable,
-								   @ParamsIsNotNull Boolean stripPrefix,
-								   @ParamsIsNotNull Boolean customSensitiveHeaders,
-								   @ParamsIsNotNull Integer status, @RequestParam(required = false) String url,
-								   @ParamsIsNotNull String description) throws NoSuchFieldException, IllegalAccessException {
+	public Result updateSysGateway(@ParamsIsNotNull @RequestParam String id,
+								   @ParamsIsNotNull @RequestParam String path,
+								   @ParamsIsNotNull @RequestParam String appName,
+								   @ParamsIsNotNull @RequestParam String serviceId,
+								   @ParamsIsNotNull @RequestParam Boolean retryable,
+								   @ParamsIsNotNull @RequestParam Boolean applyEnable,
+								   @ParamsIsNotNull @RequestParam Boolean stripPrefix,
+								   @ParamsIsNotNull @RequestParam Boolean customSensitiveHeaders,
+								   @ParamsIsNotNull @RequestParam Integer status, @RequestParam(required = false) String url,
+								   @ParamsIsNotNull @RequestParam String description) throws NoSuchFieldException, IllegalAccessException {
 
 		SysGateway sysGateway = new SysGateway();
 		sysGateway.setAppName(appName);
