@@ -9,9 +9,9 @@ import org.springframework.context.annotation.ComponentScan;
 @EnableDiscoveryClient
 @SpringBootApplication
 @ComponentScan(basePackages = "com.mingrn.keeper")
-public class Application {
+public class SystemApplication {
 
 	public static void main(String[] args) {
-		new SpringApplicationBuilder(Application.class).web(WebApplicationType.SERVLET).run(args);
+		new SpringApplicationBuilder(SystemApplication.class).web(WebApplicationType.SERVLET).run(args);
 	}
 }
