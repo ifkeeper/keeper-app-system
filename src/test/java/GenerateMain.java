@@ -1,4 +1,4 @@
-import com.mingrn.mybatis.generator.util.CodeUtil;
+import com.mingrn.keeper.mybatis.generator.util.CodeUtil;
 
 public class GenerateMain {
 
