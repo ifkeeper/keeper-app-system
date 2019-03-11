@@ -1,7 +1,7 @@
-package com.mingrn.keeper.system.service;
-import com.mingrn.keeper.system.domain.SysGateway;
-import com.mingrn.keeper.system.dto.SysGatewayDTO;
-import com.mingrn.keeper.core.Service;
+package com.mingrn.itumate.system.service;
+import com.mingrn.itumate.system.domain.SysGateway;
+import com.mingrn.itumate.system.dto.SysGatewayDTO;
+import com.mingrn.itumate.core.Service;
 import java.lang.String;
 
 /**

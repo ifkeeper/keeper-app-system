@@ -1,4 +1,4 @@
-package com.mingrn.keeper.system.config;
+package com.mingrn.itumate.system.config;
 
 import com.alibaba.druid.support.http.StatViewServlet;
 import com.alibaba.druid.support.http.WebStatFilter;

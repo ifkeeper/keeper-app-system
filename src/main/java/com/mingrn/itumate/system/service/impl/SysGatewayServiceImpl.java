@@ -1,10 +1,10 @@
-package com.mingrn.keeper.system.service.impl;
+package com.mingrn.itumate.system.service.impl;
 
-import com.mingrn.keeper.system.mapper.SysGatewayMapper;
-import com.mingrn.keeper.system.domain.SysGateway;
-import com.mingrn.keeper.system.service.SysGatewayService;
-import com.mingrn.keeper.system.dto.SysGatewayDTO;
-import com.mingrn.keeper.core.AbstractService;
+import com.mingrn.itumate.system.mapper.SysGatewayMapper;
+import com.mingrn.itumate.system.domain.SysGateway;
+import com.mingrn.itumate.system.service.SysGatewayService;
+import com.mingrn.itumate.system.dto.SysGatewayDTO;
+import com.mingrn.itumate.core.AbstractService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import java.lang.String;

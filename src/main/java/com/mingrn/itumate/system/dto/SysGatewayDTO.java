@@ -1,5 +1,5 @@
-package com.mingrn.keeper.system.dto;
-import com.mingrn.keeper.system.domain.SysGateway;
+package com.mingrn.itumate.system.dto;
+import com.mingrn.itumate.system.domain.SysGateway;
 import java.io.Serializable;
 
 /**

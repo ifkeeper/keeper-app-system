@@ -1,4 +1,4 @@
-package com.mingrn.keeper.system;
+package com.mingrn.itumate.system;
 
 import org.springframework.boot.WebApplicationType;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -9,8 +9,8 @@ import org.springframework.context.annotation.ComponentScan;
 
 @EnableDiscoveryClient
 @SpringBootApplication
-@ComponentScan(basePackages = "com.mingrn.keeper")
-@EnableFeignClients(basePackages = "com.mingrn.keeper")
+@ComponentScan(basePackages = "com.mingrn.itumate")
+@EnableFeignClients(basePackages = "com.mingrn.itumate")
 public class SystemApplication {
 
 	public static void main(String[] args) {

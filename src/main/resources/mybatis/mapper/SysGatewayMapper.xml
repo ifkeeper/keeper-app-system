@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.mingrn.keeper.system.mapper.SysGatewayMapper">
-  <resultMap id="BaseResultMap" type="com.mingrn.keeper.system.domain.SysGateway">
+<mapper namespace="com.mingrn.itumate.system.mapper.SysGatewayMapper">
+  <resultMap id="BaseResultMap" type="com.mingrn.itumate.system.domain.SysGateway">
     <!--
       WARNING - @mbg.generated
     -->

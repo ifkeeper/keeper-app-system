@@ -1,14 +1,14 @@
-package com.mingrn.keeper.system.web;
+package com.mingrn.itumate.system.web;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import com.mingrn.keeper.base.enums.DeletedEnum;
-import com.mingrn.keeper.global.annotation.Checked;
-import com.mingrn.keeper.global.annotation.ParamsIsNotNull;
-import com.mingrn.keeper.global.result.ResponseMsgUtil;
-import com.mingrn.keeper.global.result.Result;
-import com.mingrn.keeper.system.domain.SysGateway;
-import com.mingrn.keeper.system.service.SysGatewayService;
+import com.mingrn.itumate.base.enums.DeletedEnum;
+import com.mingrn.itumate.global.annotation.Checked;
+import com.mingrn.itumate.global.annotation.ParamsIsNotNull;
+import com.mingrn.itumate.global.result.ResponseMsgUtil;
+import com.mingrn.itumate.global.result.Result;
+import com.mingrn.itumate.system.domain.SysGateway;
+import com.mingrn.itumate.system.service.SysGatewayService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;

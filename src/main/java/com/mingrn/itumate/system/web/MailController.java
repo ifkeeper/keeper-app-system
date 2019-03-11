@@ -1,9 +1,9 @@
-package com.mingrn.keeper.system.web;
+package com.mingrn.itumate.system.web;
 
-import com.mingrn.keeper.global.result.ResponseMsgUtil;
-import com.mingrn.keeper.global.result.Result;
-import com.mingrn.keeper.msg.api.MailSendApi;
-import com.mingrn.keeper.msg.api.enums.MailTemplateEnums;
+import com.mingrn.itumate.global.result.ResponseMsgUtil;
+import com.mingrn.itumate.global.result.Result;
+import com.mingrn.itumate.msg.api.MailSendApi;
+import com.mingrn.itumate.msg.api.enums.MailTemplateEnums;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;

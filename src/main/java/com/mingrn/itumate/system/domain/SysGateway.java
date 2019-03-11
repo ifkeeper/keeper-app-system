@@ -1,4 +1,4 @@
-package com.mingrn.keeper.system.domain;
+package com.mingrn.itumate.system.domain;
 
 import java.io.Serializable;
 import java.util.Date;

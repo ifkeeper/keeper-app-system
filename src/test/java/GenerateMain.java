@@ -1,4 +1,4 @@
-import com.mingrn.keeper.mybatis.generator.util.CodeUtil;
+import com.mingrn.itumate.mybatis.generator.util.CodeUtil;
 
 public class GenerateMain {
 
@@ -7,7 +7,7 @@ public class GenerateMain {
 	private static final String JDBC_PASSWORD = "admin";
 	private static final String AUTHOR = "MinGRn <br > MinGRn97@gmail.com";
 	private static final String PROJECT_PATH = System.getProperty("user.dir");
-	private static final String PROJECT_PACKAGE = "com.mingrn.keeper.system";
+	private static final String PROJECT_PACKAGE = "com.mingrn.itumate.system";
 
 	public static void main(String[] args) {
 
