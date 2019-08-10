@@ -3,6 +3,7 @@ package com.mingrn.itumate.system.web;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.mingrn.itumate.base.enums.DeletedEnum;
+import com.mingrn.itumate.core.PaginationUtils;
 import com.mingrn.itumate.global.annotation.Checked;
 import com.mingrn.itumate.global.annotation.ParamsIsNotNull;
 import com.mingrn.itumate.global.result.ResponseMsgUtil;
@@ -39,16 +40,14 @@ public class SysGatewayController {
     @ApiOperation(value = "列表查询")
     @ApiImplicitParams({
             @ApiImplicitParam(paramType = "query", dataTypeClass = Integer.class, required = true, defaultValue = "1", name = "pageNumber", value = "页码"),
-            @ApiImplicitParam(paramType = "query", dataTypeClass = Integer.class, required = true, defaultValue = "10", name = "sizeSize", value = "每页数量")
+            @ApiImplicitParam(paramType = "query", dataTypeClass = Integer.class, required = true, defaultValue = "10", name = "pageSize", value = "每页数量")
     })
     public Result findList(@RequestParam(defaultValue = "1") Integer pageNumber,
-                           @RequestParam(defaultValue = "10") Integer sizeSize) {
+                           @RequestParam(defaultValue = "10") Integer pageSize) {
 
-        PageHelper.startPage(pageNumber, sizeSize);
+        PageHelper.startPage(pageNumber, pageSize);
         List<SysGateway> sysGatewayList = sysGatewayService.find();
-        PageInfo pageInfo = new PageInfo(sysGatewayList);
-
-        return ResponseMsgUtil.success(pageInfo);
+        return ResponseMsgUtil.success(PaginationUtils.newSingleTablePagination(sysGatewayList));
     }
 
     @Checked
