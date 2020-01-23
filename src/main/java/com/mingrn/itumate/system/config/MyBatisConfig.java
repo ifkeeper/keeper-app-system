@@ -154,7 +154,7 @@ public class MyBatisConfig {
         // insert、update是否判断字符串类型!='' 即 test="str != null"表达式内是否追加 and str != ''
         properties.setProperty("notEmpty", "false");
         properties.setProperty("ORDER", "BEFORE");
-        properties.setProperty("IDENTITY", "SELECT REPLACE(UUID(),\"-\",\"\")");
+        properties.setProperty("IDENTITY", "SELECT UPPER(REPLACE(UUID(),\"-\",\"\"))");
         mapperScannerConfigurer.setProperties(properties);
 
         return mapperScannerConfigurer;
