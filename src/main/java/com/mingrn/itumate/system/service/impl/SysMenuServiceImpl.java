@@ -9,6 +9,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 /**
  * 系统菜单表-ServiceImpl接口实现类
  *
@@ -22,4 +26,16 @@ public class SysMenuServiceImpl extends AbstractService<SysMenu, SysMenuDTO, Str
     @Autowired
     private SysMenuMapper sysMenuMapper;
 
+    @Override
+    public SysMenu getById(String id) {
+        return sysMenuMapper.getById(id);
+    }
+
+    @Override
+    public List<SysMenu> findByParentId(String parentId, boolean includeLeaf) {
+        Map<String, Object> params = new HashMap<>(2);
+        params.put("parentId", parentId);
+        params.put("includeLeaf", includeLeaf);
+        return sysMenuMapper.findByParentId(params);
+    }
 }

@@ -40,7 +40,7 @@ public class SysMenu implements Serializable {
      * 父级菜单ID
      */
     @Column(name = "parent_id")
-    private Long parentId;
+    private String parentId;
 
     /**
      * 父级菜单IDS

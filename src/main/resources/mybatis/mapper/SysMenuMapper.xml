@@ -8,7 +8,7 @@
     <id column="id" jdbcType="VARCHAR" property="id" />
     <result column="recover" jdbcType="REAL" property="recover" />
     <result column="label" jdbcType="VARCHAR" property="label" />
-    <result column="parent_id" jdbcType="BIGINT" property="parentId" />
+    <result column="parent_id" jdbcType="VARCHAR" property="parentId" />
     <result column="parents" jdbcType="VARCHAR" property="parents" />
     <result column="is_leaf" jdbcType="BIT" property="isLeaf" />
     <result column="icon_from" jdbcType="BIT" property="iconFrom" />
@@ -24,4 +24,38 @@
     <result column="remark" jdbcType="VARCHAR" property="remark" />
     <result column="description" jdbcType="LONGVARCHAR" property="description" />
   </resultMap>
+
+  <sql id="sql_column_list">
+    id,
+    recover,
+    label,
+    parent_id,
+    parents,
+    is_leaf,
+    icon_from,
+    icon_class,
+    menu_url,
+    status,
+    sort,
+    create_time,
+    modify_time,
+    create_user,
+    modify_user,
+    remark,
+    description
+  </sql>
+
+  <select id="getById" parameterType="java.lang.String" resultMap="BaseResultMap">
+    SELECT <include refid="sql_column_list" />
+    FROM sys_menu WHERE deleted = FALSE AND id = #{id} LIMIT 1
+  </select>
+
+  <select id="findByParentId" parameterType="java.util.Map" resultMap="BaseResultMap">
+    SELECT <include refid="sql_column_list" />
+    FROM sys_menu menu WHERE deleted = FALSE
+    AND parent_id = #{parentId}
+    <if test="includeLeaf == false">
+      AND is_leaf = #{includeLeaf}
+    </if>
+  </select>
 </mapper>
