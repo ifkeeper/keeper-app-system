@@ -30,4 +30,12 @@ public interface SysMenuService extends Service<SysMenu, SysMenuDTO, String> {
      * @return SysMenu
      */
     List<SysMenu> findByParentId(String parentId, boolean includeLeaf);
+
+    /**
+     * 条件分页查询
+     *
+     * @param label 菜单名称
+     * @return SysMenu
+     */
+    List<SysMenu> findPageByCondition(String label);
 }

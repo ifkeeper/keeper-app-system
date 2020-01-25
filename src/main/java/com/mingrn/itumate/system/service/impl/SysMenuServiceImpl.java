@@ -38,4 +38,11 @@ public class SysMenuServiceImpl extends AbstractService<SysMenu, SysMenuDTO, Str
         params.put("includeLeaf", includeLeaf);
         return sysMenuMapper.findByParentId(params);
     }
+
+    @Override
+    public List<SysMenu> findPageByCondition(String label) {
+        Map<String, Object> params = new HashMap<>(1);
+        params.put("label", label);
+        return sysMenuMapper.findPageByCondition(params);
+    }
 }

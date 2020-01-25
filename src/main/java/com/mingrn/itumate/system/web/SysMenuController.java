@@ -1,5 +1,6 @@
 package com.mingrn.itumate.system.web;
 
+import com.github.pagehelper.PageHelper;
 import com.mingrn.itumate.global.result.ResponseMsgUtil;
 import com.mingrn.itumate.global.result.Result;
 import com.mingrn.itumate.system.domain.SysMenu;
@@ -123,6 +124,24 @@ public class SysMenuController {
     public Result findByParentId(@PathVariable String parentId,
                                  @RequestParam(defaultValue = "false") Boolean includeLeaf) {
         List<SysMenu> sysMenuList = sysMenuService.findByParentId(parentId, includeLeaf);
+        return ResponseMsgUtil.success(sysMenuList);
+    }
+
+    /**
+     * 条件分页查询
+     */
+    @ApiOperation(value = "条件分页查询")
+    @ApiImplicitParams({
+            @ApiImplicitParam(paramType = "query", dataTypeClass = Integer.class, required = true, defaultValue = "1", name = "pageNumber", value = "页码"),
+            @ApiImplicitParam(paramType = "query", dataTypeClass = Integer.class, required = true, defaultValue = "10", name = "pageSize", value = "每页数量"),
+            @ApiImplicitParam(paramType = "query", dataTypeClass = String.class, name = "label", value = "菜单名称")
+    })
+    @GetMapping("/findPageByCondition")
+    public Result findPageByCondition(@RequestParam(defaultValue = "1") Integer pageNumber,
+                                      @RequestParam(defaultValue = "10") Integer pageSize,
+                                      @RequestParam(required = false) String label) {
+        PageHelper.startPage(pageNumber, pageSize);
+        List<SysMenu> sysMenuList = sysMenuService.findPageByCondition(label);
         return ResponseMsgUtil.success(sysMenuList);
     }
 }

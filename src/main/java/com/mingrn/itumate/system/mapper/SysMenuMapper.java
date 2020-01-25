@@ -24,7 +24,6 @@ public interface SysMenuMapper extends Mapper<SysMenu> {
      */
     SysMenu getById(String id);
 
-
     /**
      * 通过父级主键与节点类型查询数据
      * id: PK主键
@@ -34,4 +33,13 @@ public interface SysMenuMapper extends Mapper<SysMenu> {
      * @return SysMenu Of List
      */
     List<SysMenu> findByParentId(Map<String, Object> params);
+
+    /**
+     * 条件分页查询
+     * label: 菜单名称
+     *
+     * @param params 分页条件
+     * @return SysMenu
+     */
+    List<SysMenu> findPageByCondition(Map<String, Object> params);
 }

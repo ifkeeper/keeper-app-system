@@ -25,6 +25,16 @@
     <result column="description" jdbcType="LONGVARCHAR" property="description" />
   </resultMap>
 
+  <sql id="sql_pagination_start">
+    <![CDATA[]]>
+  </sql>
+
+  <sql id="sql_pagination_end">
+    <![CDATA[
+      LIMIT ${startRow-1}, ${endRow-startRow+1}
+    ]]>
+  </sql>
+
   <sql id="sql_column_list">
     id,
     recover,
@@ -56,6 +66,14 @@
     AND parent_id = #{parentId}
     <if test="includeLeaf == false">
       AND is_leaf = #{includeLeaf}
+    </if>
+  </select>
+
+  <select id="findPageByCondition" parameterType="java.util.Map" resultMap="BaseResultMap">
+    SELECT <include refid="sql_column_list" />
+    FROM sys_menu WHERE deleted = FALSE
+    <if test="label != null and label != ''">
+      AND label LIKE CONCAT('%',#{label},'%')
     </if>
   </select>
 </mapper>
