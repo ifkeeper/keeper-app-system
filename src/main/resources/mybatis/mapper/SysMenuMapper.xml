@@ -67,6 +67,7 @@
     <if test="includeLeaf == false">
       AND is_leaf = #{includeLeaf}
     </if>
+    ORDER BY sort ASC
   </select>
 
   <select id="findPageByCondition" parameterType="java.util.Map" resultMap="BaseResultMap">
@@ -75,5 +76,13 @@
     <if test="label != null and label != ''">
       AND label LIKE CONCAT('%',#{label},'%')
     </if>
+    ORDER BY create_time DESC
   </select>
+
+  <update id="batchDelete" parameterType="String">
+    UPDATE sys_menu SET deleted = TRUE, modify_time = NOW() WHERE id IN
+    <foreach collection="array" item="pk" open="(" separator="," close=")">
+      #{pk}
+    </foreach>
+  </update>
 </mapper>

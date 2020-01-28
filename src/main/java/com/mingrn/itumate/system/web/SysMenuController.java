@@ -9,7 +9,9 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
@@ -33,41 +35,94 @@ public class SysMenuController {
     /**
      * 增加
      */
-    @PostMapping("/post")
-    public Result post(@RequestParam Float recover,
-                       @RequestParam String label,
-                       @RequestParam String parents,
-                       @RequestParam Boolean isLeaf,
-                       @RequestParam Boolean iconFrom,
-                       @RequestParam String iconClass,
-                       @RequestParam String menuUrl,
-                       @RequestParam Integer status,
-                       @RequestParam Integer sort,
-                       @RequestParam String remark,
-                       @RequestParam String description) {
+    @PostMapping(consumes = {
+            MediaType.APPLICATION_JSON_UTF8_VALUE,
+            MediaType.APPLICATION_FORM_URLENCODED_VALUE
+    })
+    @ApiOperation(value = "新增菜单")
+    @ApiImplicitParams({
+            @ApiImplicitParam(paramType = "query", dataType = "FFloat", required = true, name = "recover", value = "版本号"),
+            @ApiImplicitParam(paramType = "query", dataType = "String", required = true, name = "label", value = "菜单名称"),
+            @ApiImplicitParam(paramType = "query", dataType = "String", required = true, name = "parents", value = "父级菜单PKs"),
+            @ApiImplicitParam(paramType = "query", dataType = "Boolean", required = true, name = "isLeaf", value = "是否为叶子节点"),
+            @ApiImplicitParam(paramType = "query", dataType = "Boolean", required = true, name = "iconFrom", value = "icon来源：true(ElementUI)，false(FontAwesome)"),
+            @ApiImplicitParam(paramType = "query", dataType = "String", required = true, name = "iconClass", value = "菜单ICON样式"),
+            @ApiImplicitParam(paramType = "query", dataType = "String", name = "menuUrl", value = "菜单地址"),
+            @ApiImplicitParam(paramType = "query", dataType = "int", required = true, name = "status", value = "菜单状态：1启用 0禁用"),
+            @ApiImplicitParam(paramType = "query", dataType = "int", required = true, name = "sort", value = "排序"),
+            @ApiImplicitParam(paramType = "query", dataType = "String", name = "remark", value = "菜单备注"),
+            @ApiImplicitParam(paramType = "query", dataType = "String", name = "description", value = "菜单描述信息"),
+    })
+    public Result add(SysMenu sysMenu) {
 
-        parents = parents.replace(",", "|");
-        String parentId = parents.substring(parents.lastIndexOf("|"));
+        if (sysMenu.getIsLeaf() && StringUtils.isBlank(sysMenu.getMenuUrl())) {
+            return ResponseMsgUtil.failure("菜单为叶子节点状态时地址不能为空");
+        }
 
-        SysMenu sysMenu = new SysMenu();
-        sysMenu.setRecover(recover);
-        sysMenu.setLabel(label);
-        sysMenu.setParentId(parentId);
+        String parents = sysMenu.getParents().replace(",", "|");
+        String parentId = parents.contains("|") ? parents.substring(parents.lastIndexOf("|")) : parents;
+
+        sysMenu.setDeleted(false);
         sysMenu.setParents(parents);
-        sysMenu.setIsLeaf(isLeaf);
-        sysMenu.setIconFrom(iconFrom);
-        sysMenu.setIconClass(iconClass);
-        sysMenu.setMenuUrl(menuUrl);
-        sysMenu.setStatus(status);
-        sysMenu.setSort(sort);
-        sysMenu.setRemark(remark);
-        sysMenu.setDescription(description);
-        sysMenu.setCreateTime(new Date());
+        sysMenu.setParentId(parentId);
         sysMenu.setCreateUser("SYS");
+        sysMenu.setCreateTime(new Date());
 
         sysMenuService.insert(sysMenu);
 
-        return ResponseMsgUtil.success();
+        return ResponseMsgUtil.success("新增菜单成功");
+    }
+
+    /**
+     * 修改
+     */
+    @PutMapping(
+            value = "/{id}",
+            consumes = {
+                    MediaType.APPLICATION_JSON_UTF8_VALUE,
+                    MediaType.APPLICATION_FORM_URLENCODED_VALUE
+            }
+    )
+    @ApiOperation(value = "通过PK主键修改菜单")
+    @ApiImplicitParams({
+            @ApiImplicitParam(paramType = "path", dataType = "String", required = true, name = "id", value = "PK主键"),
+            @ApiImplicitParam(paramType = "query", dataType = "Float", required = true, name = "recover", value = "版本号"),
+            @ApiImplicitParam(paramType = "query", dataType = "String", required = true, name = "label", value = "菜单名称"),
+            @ApiImplicitParam(paramType = "query", dataType = "String", required = true, name = "parents", value = "父级菜单PKs"),
+            @ApiImplicitParam(paramType = "query", dataType = "Boolean", required = true, name = "isLeaf", value = "是否为叶子节点"),
+            @ApiImplicitParam(paramType = "query", dataType = "Boolean", required = true, name = "iconFrom", value = "icon来源：true(ElementUI)，false(FontAwesome)"),
+            @ApiImplicitParam(paramType = "query", dataType = "String", required = true, name = "iconClass", value = "菜单ICON样式"),
+            @ApiImplicitParam(paramType = "query", dataType = "String", name = "menuUrl", value = "菜单地址"),
+            @ApiImplicitParam(paramType = "query", dataType = "int", required = true, name = "status", value = "菜单状态：1启用 0禁用"),
+            @ApiImplicitParam(paramType = "query", dataType = "int", required = true, name = "sort", value = "排序"),
+            @ApiImplicitParam(paramType = "query", dataType = "String", name = "remark", value = "菜单备注"),
+            @ApiImplicitParam(paramType = "query", dataType = "String", name = "description", value = "菜单描述信息"),
+    })
+    public Result update(@PathVariable String id,
+                         SysMenu sysMenu) {
+
+        if (sysMenu.getIsLeaf() && StringUtils.isBlank(sysMenu.getMenuUrl())) {
+            return ResponseMsgUtil.failure("菜单为叶子节点状态时地址不能为空");
+        }
+
+        SysMenu temp = sysMenuService.getById(id);
+        if (Objects.isNull(temp)) {
+            return ResponseMsgUtil.failure("菜单不存在,无法进行修改操作");
+        }
+
+        String parents = sysMenu.getParents().replace(",", "|");
+        String parentId = parents.contains("|") ? parents.substring(parents.lastIndexOf("|")) : parents;
+
+        sysMenu.setParents(parents);
+        sysMenu.setParentId(parentId);
+        sysMenu.setModifyUser("SYS");
+        sysMenu.setModifyTime(new Date());
+        sysMenu.setRemark(Objects.isNull(sysMenu.getRemark()) ? temp.getRemark() : sysMenu.getRemark());
+        sysMenu.setDescription(Objects.isNull(sysMenu.getDescription()) ? temp.getDescription() : sysMenu.getDescription());
+
+        sysMenuService.update(sysMenu, id);
+
+        return ResponseMsgUtil.success("菜单修改成功");
     }
 
     /**
@@ -75,7 +130,7 @@ public class SysMenuController {
      */
     @DeleteMapping("/{id}")
     @ApiOperation(value = "通过PK主键删除")
-    @ApiImplicitParam(paramType = "path", dataTypeClass = String.class, required = true, name = "id", value = "PK主键")
+    @ApiImplicitParam(paramType = "path", dataType = "String", required = true, name = "id", value = "PK主键")
     public Result delete(@PathVariable String id) throws NoSuchFieldException, IllegalAccessException {
         SysMenu sysMenu = sysMenuService.getById(id);
         if (Objects.nonNull(sysMenu)) {
@@ -88,17 +143,14 @@ public class SysMenuController {
     }
 
     /**
-     * 修改
+     * 通过PK主键删除
      */
-    @PutMapping("/{id}")
-    @ApiOperation(value = "通过PK主键修改")
-    @ApiImplicitParam(paramType = "path", dataTypeClass = String.class, required = true, name = "id", value = "PK主键")
-    public Result update(@PathVariable String id) {
-        SysMenu sysMenu = sysMenuService.getById(id);
-        if (Objects.nonNull(sysMenu)) {
-            // TODO: 2020/1/24 修改
-        }
-        return ResponseMsgUtil.success();
+    @DeleteMapping("/batch")
+    @ApiOperation(value = "通过PK主键批量删除")
+    @ApiImplicitParam(paramType = "query", dataType = "String", required = true, allowMultiple = true, name = "pks", value = "PKs主键")
+    public Result batchDelete(@RequestParam String[] pks) {
+        sysMenuService.batchDelete(pks);
+        return ResponseMsgUtil.success(null, "批量删除成功");
     }
 
     /**
@@ -106,7 +158,7 @@ public class SysMenuController {
      */
     @GetMapping("/{id}")
     @ApiOperation(value = "通过PK获取单条数据")
-    @ApiImplicitParam(paramType = "path", dataTypeClass = String.class, required = true, name = "id", value = "PK主键")
+    @ApiImplicitParam(paramType = "path", dataType = "String", required = true, name = "id", value = "PK主键")
     public Result get(@PathVariable String id) {
         SysMenu sysMenu = sysMenuService.getById(id);
         return ResponseMsgUtil.success(sysMenu);
@@ -119,7 +171,7 @@ public class SysMenuController {
     @ApiOperation(value = "通过父级主键与节点类型查询数据")
     @ApiImplicitParams({
             @ApiImplicitParam(paramType = "path", dataType = "String", required = true, name = "parentId", value = "父级菜单PK"),
-            @ApiImplicitParam(paramType = "query", dataType = "boolean", defaultValue = "false", name = "includeLeaf", value = "是否包括叶子节点")
+            @ApiImplicitParam(paramType = "query", dataType = "Boolean", defaultValue = "false", name = "includeLeaf", value = "是否包括叶子节点")
     })
     public Result findByParentId(@PathVariable String parentId,
                                  @RequestParam(defaultValue = "false") Boolean includeLeaf) {
@@ -132,9 +184,9 @@ public class SysMenuController {
      */
     @ApiOperation(value = "条件分页查询")
     @ApiImplicitParams({
-            @ApiImplicitParam(paramType = "query", dataTypeClass = Integer.class, required = true, defaultValue = "1", name = "pageNumber", value = "页码"),
-            @ApiImplicitParam(paramType = "query", dataTypeClass = Integer.class, required = true, defaultValue = "10", name = "pageSize", value = "每页数量"),
-            @ApiImplicitParam(paramType = "query", dataTypeClass = String.class, name = "label", value = "菜单名称")
+            @ApiImplicitParam(paramType = "query", dataType = "int", required = true, defaultValue = "1", name = "pageNumber", value = "页码"),
+            @ApiImplicitParam(paramType = "query", dataType = "int", required = true, defaultValue = "10", name = "pageSize", value = "每页数量"),
+            @ApiImplicitParam(paramType = "query", dataType = "String", name = "label", value = "菜单名称")
     })
     @GetMapping("/findPageByCondition")
     public Result findPageByCondition(@RequestParam(defaultValue = "1") Integer pageNumber,

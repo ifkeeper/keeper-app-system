@@ -42,4 +42,11 @@ public interface SysMenuMapper extends Mapper<SysMenu> {
      * @return SysMenu
      */
     List<SysMenu> findPageByCondition(Map<String, Object> params);
+
+    /**
+     * 通过PK主键批量删除
+     *
+     * @param pks 主键集合
+     */
+    void batchDelete(String[] pks);
 }

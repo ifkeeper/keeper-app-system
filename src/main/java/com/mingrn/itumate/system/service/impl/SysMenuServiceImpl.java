@@ -45,4 +45,9 @@ public class SysMenuServiceImpl extends AbstractService<SysMenu, SysMenuDTO, Str
         params.put("label", label);
         return sysMenuMapper.findPageByCondition(params);
     }
+
+    @Override
+    public void batchDelete(String[] pks) {
+        sysMenuMapper.batchDelete(pks);
+    }
 }

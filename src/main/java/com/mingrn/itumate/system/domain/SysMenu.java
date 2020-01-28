@@ -1,5 +1,6 @@
 package com.mingrn.itumate.system.domain;
 
+import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -24,6 +25,7 @@ public class SysMenu implements Serializable {
      */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @ApiModelProperty(hidden = true)
     private String id;
 
     /**
@@ -39,6 +41,7 @@ public class SysMenu implements Serializable {
     /**
      * 父级菜单ID
      */
+    @ApiModelProperty(hidden = true)
     @Column(name = "parent_id")
     private String parentId;
 
@@ -79,6 +82,7 @@ public class SysMenu implements Serializable {
     /**
      * 删除状态：1：删除 未删除
      */
+    @ApiModelProperty(hidden = true)
     private Boolean deleted;
 
     /**
@@ -89,24 +93,28 @@ public class SysMenu implements Serializable {
     /**
      * 创建时间
      */
+    @ApiModelProperty(hidden = true)
     @Column(name = "create_time")
     private Date createTime;
 
     /**
      * 修改时间
      */
+    @ApiModelProperty(hidden = true)
     @Column(name = "modify_time")
     private Date modifyTime;
 
     /**
      * 创建用户ID
      */
+    @ApiModelProperty(hidden = true)
     @Column(name = "create_user")
     private String createUser;
 
     /**
      * 修改用户ID
      */
+    @ApiModelProperty(hidden = true)
     @Column(name = "modify_user")
     private String modifyUser;
 

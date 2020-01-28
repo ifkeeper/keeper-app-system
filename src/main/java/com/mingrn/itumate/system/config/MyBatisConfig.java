@@ -134,7 +134,7 @@ public class MyBatisConfig {
         MapperScannerConfigurer mapperScannerConfigurer = new MapperScannerConfigurer();
         mapperScannerConfigurer.setSqlSessionTemplateBeanName("sqlSessionTemplate");
         // 项目Mapper包路径位置
-        mapperScannerConfigurer.setBasePackage("com.mingrn.itumate.**.mapper");
+        mapperScannerConfigurer.setBasePackage("com.mingrn.itumate.system.mapper");
 
         // 配置通用Mapper，详情请查阅官方文档
         Properties properties = new Properties();

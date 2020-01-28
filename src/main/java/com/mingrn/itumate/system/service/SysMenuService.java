@@ -38,4 +38,11 @@ public interface SysMenuService extends Service<SysMenu, SysMenuDTO, String> {
      * @return SysMenu
      */
     List<SysMenu> findPageByCondition(String label);
+
+    /**
+     * 通过PK主键批量删除
+     *
+     * @param pks 主键集合
+     */
+    void batchDelete(String[] pks);
 }
