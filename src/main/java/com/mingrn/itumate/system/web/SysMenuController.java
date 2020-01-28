@@ -26,7 +26,7 @@ import java.util.Objects;
  */
 @RestController
 @RequestMapping("/menu")
-@Api(description = "系统菜单 Api")
+@Api(tags = {"系统菜单接口API"})
 public class SysMenuController {
 
     @Autowired
