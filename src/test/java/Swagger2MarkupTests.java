@@ -1,4 +1,6 @@
 import com.mingrn.itumate.system.SystemApplication;
+import io.github.swagger2markup.GroupBy;
+import io.github.swagger2markup.Language;
 import io.github.swagger2markup.Swagger2MarkupConfig;
 import io.github.swagger2markup.Swagger2MarkupConverter;
 import io.github.swagger2markup.builder.Swagger2MarkupConfigBuilder;
@@ -18,16 +20,104 @@ import java.nio.file.Paths;
 @ContextConfiguration(classes = SystemApplication.class)
 public class Swagger2MarkupTests {
 
+    private static final String API_URL = "http://localhost:8002/v2/api-docs";
 
+
+    /**
+     * 生成 AsciiDocs 格式文档
+     */
     @Test
     public void generateAsciiDocs() throws MalformedURLException {
         Swagger2MarkupConfig config = new Swagger2MarkupConfigBuilder()
-                .withMarkupLanguage(MarkupLanguage.MARKDOWN)
+                .withMarkupLanguage(MarkupLanguage.ASCIIDOC)
+                .withOutputLanguage(Language.ZH)
+                .withPathsGroupedBy(GroupBy.TAGS)
+                .withGeneratedExamples()
+                .withoutInlineSchema()
                 .build();
 
-        Swagger2MarkupConverter.from(new URL("http://localhost:8002/v2/api-docs"))
+        Swagger2MarkupConverter.from(new URL(API_URL))
                 .withConfig(config)
                 .build()
-                .toFolder(Paths.get("target/docs/markdown/generated"));
+                .toFolder(Paths.get("target/docs/AsciiDocs/generated"));
+    }
+
+    /**
+     * 生成 Markdown 格式文档
+     */
+    @Test
+    public void generateMarkdownDocs() throws Exception {
+        Swagger2MarkupConfig config = new Swagger2MarkupConfigBuilder()
+                .withMarkupLanguage(MarkupLanguage.MARKDOWN)
+                .withOutputLanguage(Language.ZH)
+                .withPathsGroupedBy(GroupBy.TAGS)
+                .withGeneratedExamples()
+                .withoutInlineSchema()
+                .build();
+
+        Swagger2MarkupConverter.from(new URL(API_URL))
+                .withConfig(config)
+                .build()
+                .toFolder(Paths.get("target/docs/Markdown/generated"));
+    }
+
+    /**
+     * 生成 Confluence 格式文档
+     */
+    @Test
+    public void generateConfluenceDocs() throws Exception {
+        //    输出Confluence使用的格式
+        Swagger2MarkupConfig config = new Swagger2MarkupConfigBuilder()
+                .withMarkupLanguage(MarkupLanguage.CONFLUENCE_MARKUP)
+                .withOutputLanguage(Language.ZH)
+                .withPathsGroupedBy(GroupBy.TAGS)
+                .withGeneratedExamples()
+                .withoutInlineSchema()
+                .build();
+
+        Swagger2MarkupConverter.from(new URL(API_URL))
+                .withConfig(config)
+                .build()
+                .toFolder(Paths.get("target/docs/Confluence/generated"));
+    }
+
+    /**
+     * 生成 AsciiDocs 格式文档,并汇总成一个文件
+     */
+    @Test
+    public void generateAsciiDocsToFile() throws Exception {
+        //    输出Ascii到单文件
+        Swagger2MarkupConfig config = new Swagger2MarkupConfigBuilder()
+                .withMarkupLanguage(MarkupLanguage.ASCIIDOC)
+                .withOutputLanguage(Language.ZH)
+                .withPathsGroupedBy(GroupBy.TAGS)
+                .withGeneratedExamples()
+                .withoutInlineSchema()
+                .build();
+
+        Swagger2MarkupConverter.from(new URL(API_URL))
+                .withConfig(config)
+                .build()
+                .toFile(Paths.get("target/docs/AsciiDocs/generated/all"));
+    }
+
+    /**
+     * 生成 Markdown 格式文档,并汇总成一个文件
+     */
+    @Test
+    public void generateMarkdownDocsToFile() throws Exception {
+        //    输出Markdown到单文件
+        Swagger2MarkupConfig config = new Swagger2MarkupConfigBuilder()
+                .withMarkupLanguage(MarkupLanguage.MARKDOWN)
+                .withOutputLanguage(Language.ZH)
+                .withPathsGroupedBy(GroupBy.TAGS)
+                .withGeneratedExamples()
+                .withoutInlineSchema()
+                .build();
+
+        Swagger2MarkupConverter.from(new URL(API_URL))
+                .withConfig(config)
+                .build()
+                .toFile(Paths.get("target/docs/Markdown/generated/all"));
     }
 }
